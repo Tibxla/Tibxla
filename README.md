@@ -97,15 +97,6 @@ const tibxla = {
   </a>
 </p>
 
-## ✦ Now Playing
-
-<!-- Pour activer Spotify : aller sur https://spotify-github-profile.kittinan.com/, autoriser, copier l'URL générée et la coller en src ci-dessous -->
-<p align="center">
-  <a href="https://open.spotify.com/">
-    <img src="https://spotify-github-profile.kittinan.com/api/view?uid=PLACEHOLDER&cover_image=true&theme=novatorem&show_offline=true&background_color=121212&interchange=false&bar_color=53b14f&bar_color_cover=false" alt="Spotify Now Playing" />
-  </a>
-</p>
-
 ## ✦ Stats
 
 <p align="center">
