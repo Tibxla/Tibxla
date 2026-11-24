@@ -1,116 +1,47 @@
-<p>
-<a href="https://thibaudtl.com">
+<p align="center">
   <picture>
-    <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/banner-compact-dark.svg">
-    <source media="(max-width: 600px)" srcset="assets/banner-compact-light.svg">
-    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
-    <img src="assets/banner-light.svg" width="100%" alt="Tibxla, full-stack and AI developer. Master's in MIAGE, work-study.">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/header-clear-dark.svg">
+    <img src="assets/header-clear-light.svg" width="100%" alt="Tibxla, full-stack and AI developer">
   </picture>
-</a>
 </p>
 
-I build products end to end, from the database to the last pixel, and I hand the repetitive parts to AI agents. Currently doing a Master's in MIAGE (computer science and business) at Université Paris Nanterre as a work-study student, and running my own Linux homelab on the side.
-
-**[thibaudtl.com](https://thibaudtl.com)** · [LinkedIn](https://www.linkedin.com/in/thibaudthomaslamotte/) · [contact@thibaudtl.com](mailto:contact@thibaudtl.com)
-
-<br>
-
-## Selected work
-
-<p>
-<a href="https://thibaudtl.com/edifig">
-  <picture>
-    <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/work-edifig-compact-dark.svg">
-    <source media="(max-width: 600px)" srcset="assets/work-edifig-compact-light.svg">
-    <source media="(prefers-color-scheme: dark)" srcset="assets/work-edifig-dark.svg">
-    <img src="assets/work-edifig-light.svg" width="100%" alt="Edifig, in production: 1,443 commits, 30 ADRs, about 1,600 tests">
-  </picture>
-</a>
+<p align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=22&duration=2800&pause=700&color=58A6FF&center=true&vCenter=true&width=600&lines=Hey%2C%20I%27m%20Tibxla;Full-stack%20%26%20AI%20developer;I%20build%20things%20and%20automate%20the%20rest" alt="Hey, I'm Tibxla. Full-stack & AI developer.">
 </p>
 
-A digital flatplan for the real-estate supplement of Le Figaro: an interactive grid of spreads that generates the XML for the print pipeline in real time. Built solo during my internship, graded 19/20, used by the editorial team.<br>
-`Next.js 16` `TypeScript` `PostgreSQL` `Okta OIDC` `SSE` · **[Case study →](https://thibaudtl.com/edifig)**
-
-<br>
-
-<p>
-<a href="https://au5000.com">
-  <picture>
-    <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/work-au5000-compact-dark.svg">
-    <source media="(max-width: 600px)" srcset="assets/work-au5000-compact-light.svg">
-    <source media="(prefers-color-scheme: dark)" srcset="assets/work-au5000-dark.svg">
-    <img src="assets/work-au5000-light.svg" width="100%" alt="Au5000, live: 1,439 commits, 22 ADRs, bilingual French and English">
-  </picture>
-</a>
+<p align="center">
+  <a href="https://thibaudtl.com"><img src="https://img.shields.io/badge/thibaudtl.com-000000?style=for-the-badge&logo=googlechrome&logoColor=white" alt="Portfolio"></a>
+  <a href="https://www.linkedin.com/in/thibaudthomaslamotte/"><img src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"></a>
 </p>
 
-A premium bilingual website for a chalet rental with an indoor pool in Quebec, built for a client.<br>
-`Next.js 16` `React 19` `Supabase` `Tailwind v4` `GSAP` · **[Visit →](https://au5000.com)**
-
-<br>
-
-<p>
-<a href="https://github.com/Tibxla/croustylift">
-  <picture>
-    <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/work-croustylift-compact-dark.svg">
-    <source media="(max-width: 600px)" srcset="assets/work-croustylift-compact-light.svg">
-    <source media="(prefers-color-scheme: dark)" srcset="assets/work-croustylift-dark.svg">
-    <img src="assets/work-croustylift-light.svg" width="100%" alt="Croustylift, open source: 1,900+ tests, 24 ADRs, offline-first PWA">
-  </picture>
-</a>
+<p align="center">
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript">
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black" alt="JavaScript">
+  <img src="https://img.shields.io/badge/React-20232A?style=flat-square&logo=react&logoColor=61DAFB" alt="React">
+  <img src="https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white" alt="Next.js">
+  <img src="https://img.shields.io/badge/Astro-BC52EE?style=flat-square&logo=astro&logoColor=white" alt="Astro">
+  <img src="https://img.shields.io/badge/Node.js-5FA04E?style=flat-square&logo=nodedotjs&logoColor=white" alt="Node.js">
+  <img src="https://img.shields.io/badge/Tailwind-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white" alt="Tailwind">
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white" alt="PostgreSQL">
+  <img src="https://img.shields.io/badge/Supabase-3FCF8E?style=flat-square&logo=supabase&logoColor=white" alt="Supabase">
+  <img src="https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white" alt="Docker">
+  <img src="https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white" alt="Python">
+  <img src="https://img.shields.io/badge/Java-007396?style=flat-square&logo=openjdk&logoColor=white" alt="Java">
+  <img src="https://img.shields.io/badge/C%2B%2B-00599C?style=flat-square&logo=cplusplus&logoColor=white" alt="C++">
+  <img src="https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white" alt="PHP">
+  <img src="https://img.shields.io/badge/Linux-FCC624?style=flat-square&logo=linux&logoColor=black" alt="Linux">
+  <img src="https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white" alt="Vercel">
+  <img src="https://img.shields.io/badge/Claude-D97757?style=flat-square&logo=claude&logoColor=white" alt="Claude">
 </p>
 
-A local-first lifting tracker. Log a set in one tap at the gym, read your real progress later. Works offline and syncs with last-write-wins.<br>
-`React 19` `Vite` `TypeScript` `Supabase` `Tailwind v4` · **[Code →](https://github.com/Tibxla/croustylift)**
-
-<br>
-
-<p>
-<a href="https://github.com/Tibxla/autocalled">
-  <picture>
-    <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/work-autocalled-compact-dark.svg">
-    <source media="(max-width: 600px)" srcset="assets/work-autocalled-compact-light.svg">
-    <source media="(prefers-color-scheme: dark)" srcset="assets/work-autocalled-dark.svg">
-    <img src="assets/work-autocalled-light.svg" width="100%" alt="Autocalled, open source: 830+ tests, 21 ADRs, Bluetooth hands-free phone bridge">
-  </picture>
-</a>
+<p align="center">
+  <img src="https://github-readme-stats.vercel.app/api?username=Tibxla&show_icons=true&hide_border=true&hide_title=true&hide=stars&hide_rank=true&theme=transparent&text_color=8b949e&icon_color=00c6ff" height="165" alt="GitHub stats">
+  <img src="https://streak-stats.demolab.com?user=Tibxla&hide_border=true&theme=transparent&ring=00C6FF&fire=FF2A5C&currStreakNum=8B949E&sideNums=8B949E&currStreakLabel=00C6FF&sideLabels=8B949E&dates=8B949E" height="165" alt="GitHub streak">
 </p>
 
-An AI voice assistant that places real sales calls through a phone on a real mobile line, books the meeting in Google Calendar, then writes a review of each call where every objection points back to the prospect's exact words. A demo project, not a commercial tool.<br>
-`Next.js 16` `TypeScript` `PostgreSQL` `Drizzle` `ElevenLabs` `Python` `BlueZ` · **[Code →](https://github.com/Tibxla/autocalled)**
-
-<br>
-
-<p>
-<a href="https://crypto-graph-explorer.vercel.app">
+<p align="center">
   <picture>
-    <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/work-crypto-graph-compact-dark.svg">
-    <source media="(max-width: 600px)" srcset="assets/work-crypto-graph-compact-light.svg">
-    <source media="(prefers-color-scheme: dark)" srcset="assets/work-crypto-graph-dark.svg">
-    <img src="assets/work-crypto-graph-light.svg" width="100%" alt="Crypto-Graph, live demo: 12,880 nodes, 12,000+ edges, Gini index 0.978">
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=Tibxla&hide_border=true&area=true&radius=8&custom_title=Contributions&bg_color=0d1117&color=9198a1&line=00c6ff&point=f0f6fc&area_color=00c6ff&title_color=f0f6fc">
+    <img src="https://github-readme-activity-graph.vercel.app/graph?username=Tibxla&hide_border=true&area=true&radius=8&custom_title=Contributions&bg_color=ffffff&color=59636e&line=0a8fd6&point=1f2328&area_color=0a8fd6&title_color=1f2328" width="100%" alt="Contribution graph">
   </picture>
-</a>
 </p>
-
-An interactive D3.js map of the WETH network on Polygon during the market crash of 5 August 2024, with a university report written in LaTeX.<br>
-`React` `TypeScript` `D3.js` `Vite` · **[Demo →](https://crypto-graph-explorer.vercel.app)** · **[Code →](https://github.com/Tibxla/crypto-graph-explorer)**
-
-<br>
-
-<details>
-<summary><b>Smaller projects</b></summary>
-<br>
-
-- **[FileRenamer](https://github.com/Tibxla/FileRenamer)**, a C++/Qt desktop app that makes renamed copies of numbered files, shipped as a Windows release.
-- **[SteganoPY](https://github.com/Tibxla/SteganoPY)**, a Flask app that hides any file inside a PNG image (LSB steganography).
-- **[PGI-Automobile](https://github.com/Tibxla/PGI-Automobile)**, an ERP for a car dealership in plain PHP: vehicles, sales, customers, HR, stock.
-- **[Maze-game](https://github.com/Tibxla/Maze-game)**, a turn-based maze in Python and Pygame: escape the Minotaur.
-- **[Sorting benchmark](https://github.com/Tibxla/Comapraison-Algorithme_tri)**, 16 sorting algorithms in C, with 192 automated tests and plotted results.
-
-</details>
-
-## Stack
-
-**Build** · `TypeScript` `React` `Next.js` `Astro` `Node` `Tailwind` `WebGL` `GSAP`<br>
-**Data & ops** · `PostgreSQL` `Supabase` `Drizzle` `Docker` `GitHub Actions` `Vitest` `Claude Code`<br>
-**Also** · `C/C++` `PHP` `Java` `Python` `LaTeX` `Tailscale`

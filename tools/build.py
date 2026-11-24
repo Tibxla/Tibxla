@@ -1,15 +1,15 @@
-"""Builds the SVG images used by the profile README (assets/*.svg).
+"""Builds the animated header of the profile README (assets/header-clear-*.svg).
 
 GitHub serves README images through <img>, so an SVG cannot load web fonts
-and the viewer's own fonts are unknown. Every piece of text is therefore
-shaped with HarfBuzz and outlined to <path> here: the files render the same
-everywhere, with no font dependency.
+and the viewer's own fonts are unknown. The text is therefore shaped with
+HarfBuzz and outlined to <path> here: the header renders the same everywhere.
 
-Each image comes in two variants, picked by <picture> in the README:
-  dark   black slab, the portfolio's "inside" world (thibaudtl.com)
-  light  white slab, its "outside" world
+Two variants, picked by <picture> in the README: dark and light. There is no
+background slab: the name sits on the page and follows GitHub's theme.
+The letters rise one by one, then the cyan rule draws itself, then the
+subtitle fades in. Everything stays still under prefers-reduced-motion.
 
-Run from the repo root after editing the data below:
+Run from the repo root after editing the text below:
   python -m venv .venv && .venv/bin/pip install fonttools brotli uharfbuzz
   .venv/bin/python tools/build.py
 """
@@ -17,7 +17,6 @@ Run from the repo root after editing the data below:
 from __future__ import annotations
 
 import io
-from dataclasses import dataclass
 from pathlib import Path
 
 import uharfbuzz as hb
@@ -29,10 +28,14 @@ ROOT = Path(__file__).resolve().parent.parent
 FONTS = ROOT / "tools" / "fonts"
 OUT = ROOT / "assets"
 
-W = 720  # desktop viewBox width
-WC = 400  # compact viewBox width, served below 600px so phones get legible labels
+NAME = "Tibxla"
+SUBTITLE = "full-stack & AI developer"
+W, H = 900, 180
 
-# ---------------------------------------------------------------- fonts
+THEMES = {
+    "dark": dict(ink="#f0f6fc", rule="#00c6ff", sub="#9198a1"),
+    "light": dict(ink="#1f2328", rule="#0a8fd6", sub="#59636e"),
+}
 
 
 class Face:
@@ -57,213 +60,55 @@ class Face:
         for info, pos in zip(b.glyph_infos, b.glyph_positions):
             out.append((self.order[info.codepoint], x + pos.x_offset * s, pos.y_offset * s))
             x += pos.x_advance * s + track
-        return out, x - track if out else 0.0
+        return out, (x - track if out else 0.0)
 
-    def width(self, text: str, size: float, track: float = 0.0) -> float:
-        return self.shape(text, size, track)[1]
-
-    def path(self, text: str, size: float, x: float, y: float, track: float = 0.0,
-             anchor: str = "start") -> str:
+    def glyph_paths(self, text: str, size: float, cx: float, y: float, track: float = 0.0):
+        """One path per glyph, the whole line centred on cx."""
         glyphs, w = self.shape(text, size, track)
-        if anchor == "end":
-            x -= w
-        elif anchor == "middle":
-            x -= w / 2
-        s = size / self.upm
-        pen = SVGPathPen(self.glyphs, ntos=lambda v: f"{v:.2f}".rstrip("0").rstrip("."))
+        x0, s = cx - w / 2, size / self.upm
+        paths = []
         for name, gx, gy in glyphs:
-            self.glyphs[name].draw(TransformPen(pen, (s, 0, 0, -s, x + gx, y - gy)))
-        return pen.getCommands()
+            pen = SVGPathPen(self.glyphs, ntos=lambda v: f"{v:.2f}".rstrip("0").rstrip("."))
+            self.glyphs[name].draw(TransformPen(pen, (s, 0, 0, -s, x0 + gx, y - gy)))
+            paths.append(pen.getCommands())
+        return paths, x0, w
 
 
 DISPLAY = Face("archivo-narrow-latin-700-normal.woff2")
-SANS = Face("schibsted-grotesk-latin-500-normal.woff2")
 MONO = Face("ibm-plex-mono-latin-400-normal.woff2")
-MONO_M = Face("ibm-plex-mono-latin-500-normal.woff2")
-
-# ---------------------------------------------------------------- themes
-
-THEMES = {
-    "dark": dict(
-        bg="#000000", border="#ffffff24", rule="#ffffff17", hi="#f4f4f7", ink="#e8e8ec",
-        prose="#9c9ca6", meta="#8a8a96", deco="#4f4f5a", red="#ff2a5c", cyan="#00c6ff",
-        chroma=0.75, prod="#52d18a", live="#c8c8d0", oss="#e8e8ec", wip="#d6a44e",
-    ),
-    "light": dict(
-        bg="#ffffff", border="#0000001f", rule="#00000012", hi="#0b0b0f", ink="#18181d",
-        prose="#55555f", meta="#6b6b76", deco="#b9b9c3", red="#ff2a5c", cyan="#00b2e6",
-        chroma=0.6, prod="#1f9d5c", live="#5f5f6a", oss="#18181d", wip="#b07a1c",
-    ),
-}
 
 
-def p(d: str, fill: str, extra: str = "") -> str:
-    return f'<path d="{d}" fill="{fill}"{extra}/>'
-
-
-def svg(h: int, t: dict, body: str, title: str, style: str = "", w: int = W) -> str:
-    return (
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" '
-        f'role="img" aria-label="{title}"><title>{title}</title>'
-        + (f"<style>{style}</style>" if style else "")
-        + f'<rect x="0.5" y="0.5" width="{w - 1}" height="{h - 1}" rx="14" fill="{t["bg"]}" '
-        f'stroke="{t["border"]}"/>' + body + "</svg>\n"
+def header(t: dict) -> str:
+    letters, x0, w = DISPLAY.glyph_paths(NAME, 96, W / 2, 110, track=-1)
+    sub = "".join(MONO.glyph_paths(SUBTITLE, 15, W / 2, 162)[0])
+    name = "".join(
+        f'<path class="l" style="animation-delay:{0.12 * i:.2f}s" d="{d}" fill="{t["ink"]}"/>'
+        for i, d in enumerate(letters) if d
     )
-
-
-# ---------------------------------------------------------------- banner
-
-CARET_CSS = (
-    "@keyframes b{0%,49%{opacity:1}50%,100%{opacity:0}}"
-    ".c{animation:b 1.1s steps(1) infinite}"
-    "@media (prefers-reduced-motion:reduce){.c{animation:none}}"
-)
-
-
-def banner(t: dict) -> str:
-    h, pad = 268, 32
-    out = []
-    # top bar: terminal prompt + blinking caret, status on the right
-    prompt = "tibxla@github:~$ whoami"
-    out.append(p(MONO.path(prompt, 14, pad, 42), t["meta"]))
-    cx = pad + MONO.width(prompt, 14) + 6
-    out.append(f'<rect class="c" x="{cx:.1f}" y="31" width="8" height="14" fill="{t["hi"]}"/>')
-    right = "online"
-    rw = MONO.width(right, 14)
-    out.append(p(MONO.path(right, 14, W - pad, 42, anchor="end"), t["meta"]))
-    out.append(f'<circle cx="{W - pad - rw - 11:.1f}" cy="37.5" r="3.5" fill="{t["prod"]}"/>')
-    out.append(f'<line x1="0" y1="62.5" x2="{W}" y2="62.5" stroke="{t["rule"]}"/>')
-
-    # the name, with the portfolio's red/cyan chromatic split
-    name, size, base = "Tibxla", 128, 186
-    d = DISPLAY.path(name, size, pad - 4, base, track=-1.5)
-    out.append(f'<defs><path id="n" d="{d}"/></defs>')
-    out.append(f'<use href="#n" fill="{t["red"]}" opacity="{t["chroma"]}" x="-2.5"/>')
-    out.append(f'<use href="#n" fill="{t["cyan"]}" opacity="{t["chroma"]}" x="2.5"/>')
-    out.append(f'<use href="#n" fill="{t["hi"]}"/>')
-
-    # role, bottom-aligned with the name on the right
-    out.append(p(SANS.path("Full-stack & AI developer", 25, W - pad, base - 30, anchor="end"), t["hi"]))
-    out.append(p(MONO.path("Master's in MIAGE · work-study", 14, W - pad, base, anchor="end"), t["meta"]))
-
-    # bottom bar
-    out.append(f'<line x1="0" y1="{h - 52.5}" x2="{W}" y2="{h - 52.5}" stroke="{t["rule"]}"/>')
-    out.append(p(MONO.path("// build useful things, automate the rest", 13, pad, h - 21), t["deco"]))
-    out.append(p(MONO.path("thibaudtl.com", 13, W - pad, h - 21, anchor="end"), t["meta"]))
-    return svg(h, t, "".join(out), "Tibxla, full-stack and AI developer", CARET_CSS)
-
-
-# ---------------------------------------------------------------- project strips
-
-
-@dataclass
-class Project:
-    slug: str
-    n: str
-    title: str
-    status: str  # prod | live | oss | wip
-    status_label: str
-    context: str
-    metrics: list[tuple[str, str]]
-
-
-PROJECTS = [
-    Project("edifig", "01", "Edifig", "prod", "in production", "Le Figaro · 2026",
-            [("1,443", "commits"), ("30", "ADRs"), ("~1,600", "tests")]),
-    Project("au5000", "02", "Au5000", "live", "live", "Client · 2026",
-            [("1,439", "commits"), ("22", "ADRs"), ("FR·EN", "bilingual")]),
-    Project("croustylift", "03", "Croustylift", "oss", "open source", "Product · 2026",
-            [("1,900+", "tests"), ("24", "ADRs"), ("PWA", "offline-first")]),
-    Project("autocalled", "04", "Autocalled", "oss", "open source", "AI voice · 2026",
-            [("830+", "tests"), ("21", "ADRs"), ("HFP", "phone bridge")]),
-    Project("crypto-graph", "05", "Crypto-Graph", "live", "live demo", "Data viz · 2026",
-            [("12,880", "nodes"), ("12,000+", "edges"), ("0.978", "Gini index")]),
-]
-
-
-def strip(pr: Project, t: dict) -> str:
-    h, pad = 136, 32
-    out = []
-    # left: index + status, title, context
-    out.append(p(MONO_M.path(pr.n, 13, pad, 40), t["deco"]))
-    sx = pad + MONO_M.width(pr.n, 13) + 16
-    out.append(f'<circle cx="{sx + 3:.1f}" cy="35.5" r="3.5" fill="{t[pr.status]}"/>')
-    out.append(p(MONO.path(pr.status_label, 13, sx + 13, 40), t["meta"]))
-    out.append(p(DISPLAY.path(pr.title, 42, pad - 2, 88, track=-0.3), t["hi"]))
-    out.append(p(MONO.path(pr.context, 13, pad, 112), t["meta"]))
-
-    # right: telemetry on a fixed grid, so the columns line up from card to card
-    col, gap = 118, 22
-    x0 = W - pad - 3 * col - 2 * gap
-    rx = x0 - 18
-    left_edge = pad + max(DISPLAY.width(pr.title, 42, -0.3), MONO.width(pr.context, 13))
-    assert rx > left_edge + 12, f"{pr.slug}: telemetry overlaps the title"
-    for i, (value, label) in enumerate(pr.metrics):
-        assert max(DISPLAY.width(value, 34), MONO.width(label, 13)) <= col, f"{pr.slug}: {value} too wide"
-        cx = x0 + i * (col + gap)
-        out.append(p(DISPLAY.path(value, 34, cx, 84), t["ink"]))
-        out.append(p(MONO.path(label, 13, cx, 108), t["meta"]))
-    # thin rule between identity and data
-    out.append(f'<line x1="{rx:.1f}" y1="30" x2="{rx:.1f}" y2="112" stroke="{t["rule"]}"/>')
-
-    alt = f"{pr.title}, {pr.status_label}: " + ", ".join(f"{v} {l}" for v, l in pr.metrics)
-    return svg(h, t, "".join(out), alt)
-
-
-# ---------------------------------------------------------------- compact variants (phones)
-
-
-def banner_compact(t: dict) -> str:
-    h, pad, w = 206, 22, WC
-    out = []
-    prompt = "tibxla@github:~$ whoami"
-    out.append(p(MONO.path(prompt, 12, pad, 33), t["meta"]))
-    cx = pad + MONO.width(prompt, 12) + 5
-    out.append(f'<rect class="c" x="{cx:.1f}" y="24" width="7" height="12" fill="{t["hi"]}"/>')
-    out.append(f'<circle cx="{w - pad - 3.5:.1f}" cy="29" r="3.5" fill="{t["prod"]}"/>')
-    out.append(f'<line x1="0" y1="50.5" x2="{w}" y2="50.5" stroke="{t["rule"]}"/>')
-    d = DISPLAY.path("Tibxla", 88, pad - 3, 132, track=-1)
-    out.append(f'<defs><path id="n" d="{d}"/></defs>')
-    out.append(f'<use href="#n" fill="{t["red"]}" opacity="{t["chroma"]}" x="-2"/>')
-    out.append(f'<use href="#n" fill="{t["cyan"]}" opacity="{t["chroma"]}" x="2"/>')
-    out.append(f'<use href="#n" fill="{t["hi"]}"/>')
-    out.append(p(SANS.path("Full-stack & AI developer", 19, pad, 164), t["hi"]))
-    out.append(p(MONO.path("Master's in MIAGE · work-study", 12, pad, 186), t["meta"]))
-    return svg(h, t, "".join(out), "Tibxla, full-stack and AI developer", CARET_CSS, w)
-
-
-def strip_compact(pr: Project, t: dict) -> str:
-    h, pad, w = 172, 22, WC
-    out = []
-    out.append(p(MONO_M.path(pr.n, 12, pad, 34), t["deco"]))
-    sx = pad + MONO_M.width(pr.n, 12) + 14
-    out.append(f'<circle cx="{sx + 3:.1f}" cy="29.5" r="3.5" fill="{t[pr.status]}"/>')
-    out.append(p(MONO.path(pr.status_label, 12, sx + 12, 34), t["meta"]))
-    out.append(p(MONO.path(pr.context, 12, w - pad, 34, anchor="end"), t["meta"]))
-    out.append(p(DISPLAY.path(pr.title, 34, pad - 1, 78, track=-0.3), t["hi"]))
-    out.append(f'<line x1="{pad}" y1="98.5" x2="{w - pad}" y2="98.5" stroke="{t["rule"]}"/>')
-    col = (w - 2 * pad) / 3
-    for i, (value, label) in enumerate(pr.metrics):
-        cx = pad + i * col
-        assert max(DISPLAY.width(value, 27), MONO.width(label, 12)) <= col - 8, f"{pr.slug}: {value} too wide"
-        out.append(p(DISPLAY.path(value, 27, cx, 136), t["ink"]))
-        out.append(p(MONO.path(label, 12, cx, 156), t["meta"]))
-    alt = f"{pr.title}, {pr.status_label}: " + ", ".join(f"{v} {l}" for v, l in pr.metrics)
-    return svg(h, t, "".join(out), alt, w=w)
-
-
-# ---------------------------------------------------------------- main
+    css = (
+        ".l{animation:up .9s cubic-bezier(.16,1,.3,1) both}"
+        "@keyframes up{from{opacity:0;transform:translateY(18px)}}"
+        f".u{{stroke-dasharray:{w:.0f};animation:draw 1.1s .8s ease-out both}}"
+        f"@keyframes draw{{from{{stroke-dashoffset:{w:.0f}}}}}"
+        ".s{animation:fade 1s 1.2s both}@keyframes fade{from{opacity:0}}"
+        "@media (prefers-reduced-motion:reduce){*{animation:none!important}}"
+    )
+    title = f"{NAME}, {SUBTITLE}"
+    return (
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" '
+        f'role="img" aria-label="{title}"><title>{title}</title><style>{css}</style>'
+        f"{name}"
+        f'<line class="u" x1="{x0:.1f}" y1="132" x2="{x0 + w:.1f}" y2="132" stroke="{t["rule"]}" stroke-width="2"/>'
+        f'<path class="s" d="{sub}" fill="{t["sub"]}"/>'
+        "</svg>\n"
+    )
 
 
 def main() -> None:
     OUT.mkdir(exist_ok=True)
     for name, t in THEMES.items():
-        (OUT / f"banner-{name}.svg").write_text(banner(t))
-        (OUT / f"banner-compact-{name}.svg").write_text(banner_compact(t))
-        for pr in PROJECTS:
-            (OUT / f"work-{pr.slug}-{name}.svg").write_text(strip(pr, t))
-            (OUT / f"work-{pr.slug}-compact-{name}.svg").write_text(strip_compact(pr, t))
-    print("\n".join(sorted(f.name for f in OUT.glob("*.svg"))))
+        (OUT / f"header-clear-{name}.svg").write_text(header(t))
+        print(f"assets/header-clear-{name}.svg")
 
 
 if __name__ == "__main__":
