@@ -1,118 +1,92 @@
-<!-- ╔══════════════════════════════════════════════════════════════╗ -->
-<!-- ║  Banner                                                       ║ -->
-<!-- ╚══════════════════════════════════════════════════════════════╝ -->
-<p align="center">
-  <a href="https://thibaudtl.xyz">
-    <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0F2027,50:203A43,100:2C5364&height=220&section=header&text=Tibxla&fontColor=ffffff&fontSize=80&fontAlignY=38&desc=Builder%20%C2%B7%20Automation%20%C2%B7%20IA&descAlignY=62&descSize=18&animation=fadeIn" alt="banner" />
-  </a>
-</p>
+<a href="https://thibaudtl.com">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
+    <img src="assets/banner-light.svg" width="100%" alt="Tibxla, full-stack and AI developer. Master's in MIAGE, work-study.">
+  </picture>
+</a>
 
-<!-- ╔══════════════════════════════════════════════════════════════╗ -->
-<!-- ║  Typing animation                                             ║ -->
-<!-- ╚══════════════════════════════════════════════════════════════╝ -->
-<p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=22&duration=2800&pause=600&color=58A6FF&center=true&vCenter=true&width=620&lines=%C3%89tudiant+en+informatique;Je+code%2C+je+casse%2C+j'automatise;Curieux+d'IA+et+de+syst%C3%A8mes+intelligents;%E2%9C%A6+Welcome+to+my+corner+of+the+web+%E2%9C%A6" alt="typing" />
-</p>
+I build products end to end, from the database to the last pixel, and I hand the repetitive parts to AI agents. Currently doing a Master's in MIAGE (computer science and business) at Université Paris Nanterre as a work-study student, and running my own Linux homelab on the side.
 
-<!-- ╔══════════════════════════════════════════════════════════════╗ -->
-<!-- ║  Boutons sociaux                                              ║ -->
-<!-- ╚══════════════════════════════════════════════════════════════╝ -->
-<p align="center">
-  <a href="https://thibaudtl.xyz">
-    <img src="https://img.shields.io/badge/Portfolio-thibaudtl.xyz-0F172A?style=for-the-badge&logo=vercel&logoColor=white" />
-  </a>
-  <a href="https://www.linkedin.com/in/thibaudthomaslamotte/">
-    <img src="https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white" />
-  </a>
-  <a href="https://github.com/Tibxla?tab=repositories">
-    <img src="https://img.shields.io/badge/Repos-Browse-181717?style=for-the-badge&logo=github&logoColor=white" />
-  </a>
-  <img src="https://komarev.com/ghpvc/?username=Tibxla&label=Profile%20views&color=58A6FF&style=for-the-badge" />
-</p>
+**[thibaudtl.com](https://thibaudtl.com)** · [LinkedIn](https://www.linkedin.com/in/thibaudthomaslamotte/) · [contact@thibaudtl.com](mailto:contact@thibaudtl.com)
 
----
+<br>
 
-## ✦ À propos
+## Selected work
 
-```ts
-const tibxla = {
-  role:          "Étudiant en informatique",
-  stack:         ["TypeScript", "Python", "PHP", "C/C++", "Java"],
-  current_focus: ["IA agentique", "Automatisation", "Web full-stack"],
-  hobbies:       ["Musique", "Café noir", "Tech rabbit holes"],
-  philosophy:    "Construire des trucs utiles, automatiser le reste."
-};
-```
+<a href="https://thibaudtl.com/edifig">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/work-edifig-dark.svg">
+    <img src="assets/work-edifig-light.svg" width="100%" alt="Edifig, in production: 1,443 commits, 30 ADRs, about 1,600 tests">
+  </picture>
+</a>
 
-## ✦ Stack
+A digital flatplan for the real-estate supplement of Le Figaro: an interactive grid of spreads that generates the XML for the print pipeline in real time. Built solo during my internship, graded 19/20, used by the editorial team.<br>
+`Next.js 16` `TypeScript` `PostgreSQL` `Okta OIDC` `SSE` · **[Case study →](https://thibaudtl.com/edifig)**
 
-**Langages**  
-![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
-![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
-![Java](https://img.shields.io/badge/Java-007396?style=flat-square&logo=openjdk&logoColor=white)
-![PHP](https://img.shields.io/badge/PHP-777BB4?style=flat-square&logo=php&logoColor=white)
-![C](https://img.shields.io/badge/C-A8B9CC?style=flat-square&logo=c&logoColor=black)
-![C++](https://img.shields.io/badge/C++-00599C?style=flat-square&logo=cplusplus&logoColor=white)
+<br>
 
-**Frameworks**  
-![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat-square&logo=nextdotjs&logoColor=white)
-![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
-![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
-![Flask](https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white)
-![Qt](https://img.shields.io/badge/Qt-41CD52?style=flat-square&logo=qt&logoColor=white)
+<a href="https://au5000.com">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/work-au5000-dark.svg">
+    <img src="assets/work-au5000-light.svg" width="100%" alt="Au5000, live: 100 Lighthouse SEO, bilingual French and English, 18 tables">
+  </picture>
+</a>
 
-**Data & Infra**  
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=flat-square&logo=postgresql&logoColor=white)
-![MySQL](https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
-![Supabase](https://img.shields.io/badge/Supabase-3FCF8E?style=flat-square&logo=supabase&logoColor=white)
-![Vercel](https://img.shields.io/badge/Vercel-000000?style=flat-square&logo=vercel&logoColor=white)
-![Git](https://img.shields.io/badge/Git-F05032?style=flat-square&logo=git&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=flat-square&logo=docker&logoColor=white)
+A premium bilingual website for a chalet rental with an indoor pool in Quebec, built for a client.<br>
+`Next.js 16` `React 19` `Supabase` `Tailwind v4` `GSAP` · **[Visit →](https://au5000.com)**
 
-## ✦ Projets en vedette
+<br>
 
-<p>
-  <a href="https://github.com/Tibxla/Portfolio">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=Tibxla&repo=Portfolio&theme=tokyonight&hide_border=true" />
-  </a>
-  <a href="https://github.com/Tibxla/PGI-Automobile">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=Tibxla&repo=PGI-Automobile&theme=tokyonight&hide_border=true" />
-  </a>
-</p>
-<p>
-  <a href="https://github.com/Tibxla/SteganoPY">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=Tibxla&repo=SteganoPY&theme=tokyonight&hide_border=true" />
-  </a>
-  <a href="https://github.com/Tibxla/Maze-game">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=Tibxla&repo=Maze-game&theme=tokyonight&hide_border=true" />
-  </a>
-</p>
-<p>
-  <a href="https://github.com/Tibxla/FolioVision">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=Tibxla&repo=FolioVision&theme=tokyonight&hide_border=true" />
-  </a>
-  <a href="https://github.com/Tibxla/Comapraison-Algorithme_tri">
-    <img src="https://github-readme-stats.vercel.app/api/pin/?username=Tibxla&repo=Comapraison-Algorithme_tri&theme=tokyonight&hide_border=true" />
-  </a>
-</p>
+<a href="https://github.com/Tibxla/croustylift">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/work-croustylift-dark.svg">
+    <img src="assets/work-croustylift-light.svg" width="100%" alt="Croustylift, open source: 1,900+ tests, 24 ADRs, offline-first PWA">
+  </picture>
+</a>
 
-## ✦ Stats
+A local-first lifting tracker. Log a set in one tap at the gym, read your real progress later. Works offline and syncs with last-write-wins.<br>
+`React 19` `Vite` `TypeScript` `Supabase` `Tailwind v4` · **[Code →](https://github.com/Tibxla/croustylift)**
 
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Tibxla&theme=tokyonight&show_icons=true&hide_border=true" height="180" />
-  <img src="https://streak-stats.demolab.com?user=Tibxla&theme=tokyonight&hide_border=true" height="180" />
-</p>
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Tibxla&theme=tokyonight&hide_border=true&layout=compact&langs_count=8" height="180" />
-</p>
+<br>
 
-<p align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=Tibxla&theme=tokyonight&no-frame=true&column=7&margin-w=10" />
-</p>
+<a href="https://github.com/Tibxla/autocalled">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/work-autocalled-dark.svg">
+    <img src="assets/work-autocalled-light.svg" width="100%" alt="Autocalled, open source: 830+ tests, 21 ADRs, Bluetooth hands-free phone bridge">
+  </picture>
+</a>
 
----
+An AI voice assistant that places real sales calls through a phone on a real mobile line, books the meeting in Google Calendar, then writes a review of each call where every objection points back to the prospect's exact words. A demo project, not a commercial tool.<br>
+`Next.js 16` `TypeScript` `PostgreSQL` `Drizzle` `ElevenLabs` `Python` `BlueZ` · **[Code →](https://github.com/Tibxla/autocalled)**
 
-<p align="center">
-  <em>« Construire des trucs utiles, automatiser le reste. »</em>
-</p>
+<br>
+
+<a href="https://crypto-graph-explorer.vercel.app">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/work-crypto-graph-dark.svg">
+    <img src="assets/work-crypto-graph-light.svg" width="100%" alt="Crypto-Graph, live demo: 12,880 nodes, 12,000+ edges, Gini index 0.978">
+  </picture>
+</a>
+
+An interactive D3.js map of the WETH network on Polygon during the market crash of 5 August 2024, with a university report written in LaTeX.<br>
+`React` `TypeScript` `D3.js` `Vite` · **[Demo →](https://crypto-graph-explorer.vercel.app)** · **[Code →](https://github.com/Tibxla/crypto-graph-explorer)**
+
+<br>
+
+<details>
+<summary><b>Smaller projects</b></summary>
+<br>
+
+- **[FileRenamer](https://github.com/Tibxla/FileRenamer)**, a C++/Qt desktop app that makes renamed copies of numbered files, shipped as a Windows release.
+- **[SteganoPY](https://github.com/Tibxla/SteganoPY)**, a Flask app that hides any file inside a PNG image (LSB steganography).
+- **[PGI-Automobile](https://github.com/Tibxla/PGI-Automobile)**, an ERP for a car dealership in plain PHP: vehicles, sales, customers, HR, stock.
+- **[Maze-game](https://github.com/Tibxla/Maze-game)**, a turn-based maze in Python and Pygame: escape the Minotaur.
+- **[Sorting benchmark](https://github.com/Tibxla/Comapraison-Algorithme_tri)**, 16 sorting algorithms in C, with 192 automated tests and plotted results.
+
+</details>
+
+## Stack
+
+**Build** · `TypeScript` `React` `Next.js` `Astro` `Node` `Tailwind` `WebGL` `GSAP`<br>
+**Data & ops** · `PostgreSQL` `Supabase` `Drizzle` `Docker` `GitHub Actions` `Vitest` `Claude Code`<br>
+**Also** · `C/C++` `PHP` `Java` `Python` `LaTeX` `Tailscale`
