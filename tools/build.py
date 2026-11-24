@@ -18,6 +18,7 @@ from __future__ import annotations
 
 import io
 from pathlib import Path
+from xml.sax.saxutils import escape
 
 import uharfbuzz as hb
 from fontTools.pens.svgPathPen import SVGPathPen
@@ -93,7 +94,7 @@ def header(t: dict) -> str:
         ".s{animation:fade 1s 1.2s both}@keyframes fade{from{opacity:0}}"
         "@media (prefers-reduced-motion:reduce){*{animation:none!important}}"
     )
-    title = f"{NAME}, {SUBTITLE}"
+    title = escape(f"{NAME}, {SUBTITLE}", {'"': "&quot;"})
     return (
         f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {H}" width="{W}" height="{H}" '
         f'role="img" aria-label="{title}"><title>{title}</title><style>{css}</style>'
