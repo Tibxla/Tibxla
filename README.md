@@ -1,6 +1,8 @@
 <p>
 <a href="https://thibaudtl.com">
   <picture>
+    <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/banner-compact-dark.svg">
+    <source media="(max-width: 600px)" srcset="assets/banner-compact-light.svg">
     <source media="(prefers-color-scheme: dark)" srcset="assets/banner-dark.svg">
     <img src="assets/banner-light.svg" width="100%" alt="Tibxla, full-stack and AI developer. Master's in MIAGE, work-study.">
   </picture>
@@ -18,6 +20,8 @@ I build products end to end, from the database to the last pixel, and I hand the
 <p>
 <a href="https://thibaudtl.com/edifig">
   <picture>
+    <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/work-edifig-compact-dark.svg">
+    <source media="(max-width: 600px)" srcset="assets/work-edifig-compact-light.svg">
     <source media="(prefers-color-scheme: dark)" srcset="assets/work-edifig-dark.svg">
     <img src="assets/work-edifig-light.svg" width="100%" alt="Edifig, in production: 1,443 commits, 30 ADRs, about 1,600 tests">
   </picture>
@@ -32,8 +36,10 @@ A digital flatplan for the real-estate supplement of Le Figaro: an interactive g
 <p>
 <a href="https://au5000.com">
   <picture>
+    <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/work-au5000-compact-dark.svg">
+    <source media="(max-width: 600px)" srcset="assets/work-au5000-compact-light.svg">
     <source media="(prefers-color-scheme: dark)" srcset="assets/work-au5000-dark.svg">
-    <img src="assets/work-au5000-light.svg" width="100%" alt="Au5000, live: 100 Lighthouse SEO, bilingual French and English, 18 tables">
+    <img src="assets/work-au5000-light.svg" width="100%" alt="Au5000, live: 1,439 commits, 22 ADRs, bilingual French and English">
   </picture>
 </a>
 </p>
@@ -46,6 +52,8 @@ A premium bilingual website for a chalet rental with an indoor pool in Quebec, b
 <p>
 <a href="https://github.com/Tibxla/croustylift">
   <picture>
+    <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/work-croustylift-compact-dark.svg">
+    <source media="(max-width: 600px)" srcset="assets/work-croustylift-compact-light.svg">
     <source media="(prefers-color-scheme: dark)" srcset="assets/work-croustylift-dark.svg">
     <img src="assets/work-croustylift-light.svg" width="100%" alt="Croustylift, open source: 1,900+ tests, 24 ADRs, offline-first PWA">
   </picture>
@@ -60,6 +68,8 @@ A local-first lifting tracker. Log a set in one tap at the gym, read your real p
 <p>
 <a href="https://github.com/Tibxla/autocalled">
   <picture>
+    <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/work-autocalled-compact-dark.svg">
+    <source media="(max-width: 600px)" srcset="assets/work-autocalled-compact-light.svg">
     <source media="(prefers-color-scheme: dark)" srcset="assets/work-autocalled-dark.svg">
     <img src="assets/work-autocalled-light.svg" width="100%" alt="Autocalled, open source: 830+ tests, 21 ADRs, Bluetooth hands-free phone bridge">
   </picture>
@@ -74,6 +84,8 @@ An AI voice assistant that places real sales calls through a phone on a real mob
 <p>
 <a href="https://crypto-graph-explorer.vercel.app">
   <picture>
+    <source media="(max-width: 600px) and (prefers-color-scheme: dark)" srcset="assets/work-crypto-graph-compact-dark.svg">
+    <source media="(max-width: 600px)" srcset="assets/work-crypto-graph-compact-light.svg">
     <source media="(prefers-color-scheme: dark)" srcset="assets/work-crypto-graph-dark.svg">
     <img src="assets/work-crypto-graph-light.svg" width="100%" alt="Crypto-Graph, live demo: 12,880 nodes, 12,000+ edges, Gini index 0.978">
   </picture>

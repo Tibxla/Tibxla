@@ -29,7 +29,8 @@ ROOT = Path(__file__).resolve().parent.parent
 FONTS = ROOT / "tools" / "fonts"
 OUT = ROOT / "assets"
 
-W = 720  # common viewBox width: keeps text legible once GitHub shrinks it on phones
+W = 720  # desktop viewBox width
+WC = 400  # compact viewBox width, served below 600px so phones get legible labels
 
 # ---------------------------------------------------------------- fonts
 
@@ -100,12 +101,12 @@ def p(d: str, fill: str, extra: str = "") -> str:
     return f'<path d="{d}" fill="{fill}"{extra}/>'
 
 
-def svg(h: int, t: dict, body: str, title: str, style: str = "") -> str:
+def svg(h: int, t: dict, body: str, title: str, style: str = "", w: int = W) -> str:
     return (
-        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {W} {h}" width="{W}" height="{h}" '
+        f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" '
         f'role="img" aria-label="{title}"><title>{title}</title>'
         + (f"<style>{style}</style>" if style else "")
-        + f'<rect x="0.5" y="0.5" width="{W - 1}" height="{h - 1}" rx="14" fill="{t["bg"]}" '
+        + f'<rect x="0.5" y="0.5" width="{w - 1}" height="{h - 1}" rx="14" fill="{t["bg"]}" '
         f'stroke="{t["border"]}"/>' + body + "</svg>\n"
     )
 
@@ -170,7 +171,7 @@ PROJECTS = [
     Project("edifig", "01", "Edifig", "prod", "in production", "Le Figaro · 2026",
             [("1,443", "commits"), ("30", "ADRs"), ("~1,600", "tests")]),
     Project("au5000", "02", "Au5000", "live", "live", "Client · 2026",
-            [("100", "Lighthouse SEO"), ("FR·EN", "bilingual"), ("18", "tables")]),
+            [("1,439", "commits"), ("22", "ADRs"), ("FR·EN", "bilingual")]),
     Project("croustylift", "03", "Croustylift", "oss", "open source", "Product · 2026",
             [("1,900+", "tests"), ("24", "ADRs"), ("PWA", "offline-first")]),
     Project("autocalled", "04", "Autocalled", "oss", "open source", "AI voice · 2026",
@@ -209,6 +210,48 @@ def strip(pr: Project, t: dict) -> str:
     return svg(h, t, "".join(out), alt)
 
 
+# ---------------------------------------------------------------- compact variants (phones)
+
+
+def banner_compact(t: dict) -> str:
+    h, pad, w = 206, 22, WC
+    out = []
+    prompt = "tibxla@github:~$ whoami"
+    out.append(p(MONO.path(prompt, 12, pad, 33), t["meta"]))
+    cx = pad + MONO.width(prompt, 12) + 5
+    out.append(f'<rect class="c" x="{cx:.1f}" y="24" width="7" height="12" fill="{t["hi"]}"/>')
+    out.append(f'<circle cx="{w - pad - 3.5:.1f}" cy="29" r="3.5" fill="{t["prod"]}"/>')
+    out.append(f'<line x1="0" y1="50.5" x2="{w}" y2="50.5" stroke="{t["rule"]}"/>')
+    d = DISPLAY.path("Tibxla", 88, pad - 3, 132, track=-1)
+    out.append(f'<defs><path id="n" d="{d}"/></defs>')
+    out.append(f'<use href="#n" fill="{t["red"]}" opacity="{t["chroma"]}" x="-2"/>')
+    out.append(f'<use href="#n" fill="{t["cyan"]}" opacity="{t["chroma"]}" x="2"/>')
+    out.append(f'<use href="#n" fill="{t["hi"]}"/>')
+    out.append(p(SANS.path("Full-stack & AI developer", 19, pad, 164), t["hi"]))
+    out.append(p(MONO.path("Master's in MIAGE · work-study", 12, pad, 186), t["meta"]))
+    return svg(h, t, "".join(out), "Tibxla, full-stack and AI developer", CARET_CSS, w)
+
+
+def strip_compact(pr: Project, t: dict) -> str:
+    h, pad, w = 172, 22, WC
+    out = []
+    out.append(p(MONO_M.path(pr.n, 12, pad, 34), t["deco"]))
+    sx = pad + MONO_M.width(pr.n, 12) + 14
+    out.append(f'<circle cx="{sx + 3:.1f}" cy="29.5" r="3.5" fill="{t[pr.status]}"/>')
+    out.append(p(MONO.path(pr.status_label, 12, sx + 12, 34), t["meta"]))
+    out.append(p(MONO.path(pr.context, 12, w - pad, 34, anchor="end"), t["meta"]))
+    out.append(p(DISPLAY.path(pr.title, 34, pad - 1, 78, track=-0.3), t["hi"]))
+    out.append(f'<line x1="{pad}" y1="98.5" x2="{w - pad}" y2="98.5" stroke="{t["rule"]}"/>')
+    col = (w - 2 * pad) / 3
+    for i, (value, label) in enumerate(pr.metrics):
+        cx = pad + i * col
+        assert max(DISPLAY.width(value, 27), MONO.width(label, 12)) <= col - 8, f"{pr.slug}: {value} too wide"
+        out.append(p(DISPLAY.path(value, 27, cx, 136), t["ink"]))
+        out.append(p(MONO.path(label, 12, cx, 156), t["meta"]))
+    alt = f"{pr.title}, {pr.status_label}: " + ", ".join(f"{v} {l}" for v, l in pr.metrics)
+    return svg(h, t, "".join(out), alt, w=w)
+
+
 # ---------------------------------------------------------------- main
 
 
@@ -216,8 +259,10 @@ def main() -> None:
     OUT.mkdir(exist_ok=True)
     for name, t in THEMES.items():
         (OUT / f"banner-{name}.svg").write_text(banner(t))
+        (OUT / f"banner-compact-{name}.svg").write_text(banner_compact(t))
         for pr in PROJECTS:
             (OUT / f"work-{pr.slug}-{name}.svg").write_text(strip(pr, t))
+            (OUT / f"work-{pr.slug}-compact-{name}.svg").write_text(strip_compact(pr, t))
     print("\n".join(sorted(f.name for f in OUT.glob("*.svg"))))
 
 
