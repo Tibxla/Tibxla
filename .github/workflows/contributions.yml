@@ -1,6 +1,6 @@
-# Redraws the contribution graph of the profile README every night
-# (tools/contributions.py) and commits it when the numbers changed.
-name: Contribution graph
+# Redraws the contribution graph and the stat cards of the profile README every
+# night (tools/contributions.py, tools/stats.py) and commits them when the numbers changed.
+name: Profile stats
 
 on:
   schedule:
@@ -15,15 +15,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Draw the graph
-        run: python3 tools/contributions.py
+      - name: Draw the graph and the stat cards
+        run: |
+          python3 tools/contributions.py
+          python3 tools/stats.py
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Commit if changed
         run: |
-          git add assets/contributions-*.svg
+          git add assets/contributions-*.svg assets/stats-*.svg assets/streak-*.svg
           if git diff --cached --quiet; then echo "Nothing new"; exit 0; fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "Contribution graph: daily update"
+          git commit -m "Profile stats: daily update"
           git push

@@ -32,19 +32,24 @@ LEFT, RIGHT, TOP, BOTTOM = 62, 24, 58, 50
 FONT = "-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans',Helvetica,Arial,sans-serif"
 
 
-def fetch() -> list[tuple[date, int]]:
-    query = """query($login:String!){user(login:$login){contributionsCollection{
-      contributionCalendar{weeks{contributionDays{date contributionCount}}}}}}"""
+def graphql(query: str, variables: dict) -> dict:
+    """POST a query to GitHub's GraphQL API with the token in GITHUB_TOKEN."""
     req = urllib.request.Request(
         "https://api.github.com/graphql",
-        data=json.dumps({"query": query, "variables": {"login": LOGIN}}).encode(),
+        data=json.dumps({"query": query, "variables": variables}).encode(),
         headers={"Authorization": f"bearer {os.environ['GITHUB_TOKEN']}", "User-Agent": LOGIN},
     )
     with urllib.request.urlopen(req, timeout=30) as r:
         payload = json.load(r)
     if "errors" in payload:
         raise SystemExit(f"GraphQL: {payload['errors']}")
-    weeks = payload["data"]["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
+    return payload["data"]
+
+
+def fetch() -> list[tuple[date, int]]:
+    query = """query($login:String!){user(login:$login){contributionsCollection{
+      contributionCalendar{weeks{contributionDays{date contributionCount}}}}}}"""
+    weeks = graphql(query, {"login": LOGIN})["user"]["contributionsCollection"]["contributionCalendar"]["weeks"]
     days = [(date.fromisoformat(d["date"]), d["contributionCount"]) for w in weeks for d in w["contributionDays"]]
     days.sort()
     return days[-DAYS:]

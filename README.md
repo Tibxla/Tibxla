@@ -6,7 +6,7 @@
 </p>
 
 <p align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&size=22&duration=2800&pause=700&color=58A6FF&center=true&vCenter=true&width=600&lines=Hey%2C%20I%27m%20Tibxla;Full-stack%20%26%20AI%20developer;I%20build%20things%20and%20automate%20the%20rest" alt="Hey, I'm Tibxla. Full-stack & AI developer.">
+  <img src="assets/typing.svg" alt="Hey, I'm Tibxla. Full-stack & AI developer.">
 </p>
 
 <p align="center">
@@ -62,8 +62,14 @@
 </p>
 
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=Tibxla&show_icons=true&hide_border=true&hide_title=true&hide=stars&hide_rank=true&theme=transparent&text_color=8b949e&icon_color=00c6ff" height="165" alt="GitHub stats">
-  <img src="https://streak-stats.demolab.com?user=Tibxla&hide_border=true&theme=transparent&ring=00C6FF&fire=FF2A5C&currStreakNum=8B949E&sideNums=8B949E&currStreakLabel=00C6FF&sideLabels=8B949E&dates=8B949E" height="165" alt="GitHub streak">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/stats-dark.svg">
+    <img src="assets/stats-light.svg" height="165" alt="GitHub stats">
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/streak-dark.svg">
+    <img src="assets/streak-light.svg" height="165" alt="GitHub streak">
+  </picture>
 </p>
 
 <p align="center">
