@@ -68,7 +68,7 @@
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=Tibxla&hide_border=true&area=true&radius=8&custom_title=Contributions&bg_color=0d1117&color=9198a1&line=00c6ff&point=f0f6fc&area_color=00c6ff&title_color=f0f6fc">
-    <img src="https://github-readme-activity-graph.vercel.app/graph?username=Tibxla&hide_border=true&area=true&radius=8&custom_title=Contributions&bg_color=ffffff&color=59636e&line=0a8fd6&point=1f2328&area_color=0a8fd6&title_color=1f2328" width="100%" alt="Contribution graph">
+    <source media="(prefers-color-scheme: dark)" srcset="assets/contributions-dark.svg">
+    <img src="assets/contributions-light.svg" width="100%" alt="Contribution graph">
   </picture>
 </p>
